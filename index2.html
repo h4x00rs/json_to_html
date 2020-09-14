@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors</title>
+    <script type="text/javascript" src="databse.js"></script>
+</head>
+<body>
+<h1>Doctors Table</h1>
+<table id = myTable>
+    <tr>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Фамилия</th>
+        <th>Спец-сть</th>
+    </tr>
+</table>
+<script>
+    for (var i = 0; i <= database.schedule.lpu[0].doctors.length; i++) {
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        cell1.innerHTML = database.schedule.lpu[0].doctors[i].first_name;
+        cell2.innerHTML = database.schedule.lpu[0].doctors[i].middle_name;
+        cell3.innerHTML = database.schedule.lpu[0].doctors[i].last_name;
+        cell4.innerHTML = getSpecbyid(database.schedule.lpu[0].doctors[i].speciality_code);
+
+        function getSpecbyid(id) {
+            for (var l = 0; l < database.schedule.lpu[0].speciality.length; l++) {
+                if (database.schedule.lpu[0].speciality[l].id === id) {
+                    return database.schedule.lpu[0].speciality[l].name;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
